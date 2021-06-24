@@ -1,9 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TipoDeViaje } from '../models/enums/tipo-de-viaje.enum';
 import { Viaje } from '../models/viaje';
 import { IdValor } from '../services/id-valor';
+import { ViajesModelService } from '../services/viajes-model.service';
 import { TipoDeViajePipe } from '../tipo-de-viaje.pipe';
 
 @Component({
@@ -11,17 +13,24 @@ import { TipoDeViajePipe } from '../tipo-de-viaje.pipe';
   templateUrl: './viajes-edit.component.html',
   styleUrls: ['./viajes-edit.component.scss']
 })
-export class ViajesEditComponent implements OnInit, OnChanges {
+export class ViajesEditComponent implements OnInit {
 
-  @Input() viaje: Viaje | null = null;
-  @Input() tiposDeViaje: IdValor[] = [];
-  @Output() guardar = new EventEmitter<Viaje>();
+  id: string = '';
+
+  viaje: Viaje | null = null;
+  tiposDeViaje: IdValor[] = [];
 
   submited = false;
 
   viajesForm: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private viajesModel: ViajesModelService, 
+    private router: Router,
+    route: ActivatedRoute) {
+
+    route.params.subscribe(params => {
+      this.id = params.id || '';
+    });
 
     this.viajesForm = fb.group({
       id: [''],
@@ -38,17 +47,21 @@ export class ViajesEditComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.viaje) {
-      this.viajesForm.patchValue(changes.viaje.currentValue);
-      if (changes.viaje.currentValue?.fechaSalida) {
-        const t = this.formatFecha(changes.viaje.currentValue?.fechaSalida);
-        this.viajesForm.controls.fecha.setValue(t);
-      }
-    }
-  }
-
   ngOnInit(): void {
+
+    if (this.id){
+      this.viajesModel.getViajeById(this.id).subscribe(viaje => {
+        if (viaje){
+          this.viajesForm.patchValue(viaje);
+          if (viaje?.fechaSalida) {
+            const t = this.formatFecha(viaje?.fechaSalida);
+            this.viajesForm.controls.fecha.setValue(t);
+          }
+        }
+      })
+    }
+
+    this.tiposDeViaje = this.viajesModel.getTiposDeViajes();
 
     this.viajesForm.controls.destino.valueChanges.subscribe((x: string) => {
       // if (x?.toLowerCase() === 'malaga') {
@@ -80,9 +93,10 @@ export class ViajesEditComponent implements OnInit, OnChanges {
         viaje.fechaSalida = new Date(form.value.fecha);
       }
 
-      this.guardar.emit(viaje);
+      this.viajesModel.guardar(viaje).subscribe(x => {
+        this.router.navigate(['']);
+      })
 
-      this.resetForm();
     }
   }
 

@@ -1,10 +1,10 @@
-<app-viajes-filter [tiposDeViaje]="tiposDeViaje" (search)="search.emit($event)" ></app-viajes-filter>
+<app-viajes-filter [tiposDeViaje]="tiposDeViaje" (search)="searchClick($event)" ></app-viajes-filter>
 
 
 <div class="button-actions">
     <button class="btn primary" (click)="cambiarVistaClick()">Cambiar vista</button>
 </div>
 
-<app-viajes-table-list [viajes]="viajes" (borrar)="borrar.emit($event)" (editar)="editar.emit($event)" *ngIf="!mostrarTarjetas">
+<app-viajes-table-list [viajes]="viajes" (borrar)="borrarClick($event)" (editar)="editarClick($event)" *ngIf="!mostrarTarjetas">
 </app-viajes-table-list>
 <app-viajes-card-list [viajes]="viajes" *ngIf="mostrarTarjetas"></app-viajes-card-list>
