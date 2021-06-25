@@ -11,6 +11,8 @@ import { ViajesFilterComponent } from './viajes-list/viajes-filter/viajes-filter
 import { ViajesListComponent } from './viajes-list/viajes-list.component';
 import { ViajesTableListComponent } from './viajes-list/viajes-table-list/viajes-table-list.component';
 import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HeaderComponent } from './components/header/header.component';
     ViajesFilterComponent,
     ViajesEditComponent,
     TipoDeViajePipe,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    LoginComponent    
   ],
   imports: [
     BrowserModule,
