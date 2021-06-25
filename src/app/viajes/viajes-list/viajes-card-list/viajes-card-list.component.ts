@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { TipoDeViaje } from 'src/app/models/enums/tipo-de-viaje.enum';
-import { Viaje } from 'src/app/models/viaje';
+import { Viaje } from '../../models/viaje';
 
 @Component({
   selector: 'app-viajes-card-list',

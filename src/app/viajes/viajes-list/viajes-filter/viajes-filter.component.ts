@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ViajesFilter } from 'src/app/models/viajes-filter';
-import { IdValor } from 'src/app/services/id-valor';
+import { ViajesFilter } from '../../models/viajes-filter';
+import { IdValor } from '../../services/id-valor';
+
 
 @Component({
   selector: 'app-viajes-filter',
