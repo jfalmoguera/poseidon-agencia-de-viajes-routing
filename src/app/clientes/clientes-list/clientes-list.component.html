@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>
+        Listado de Clientes
+    </h1>
+    <table>
+        <thead>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th class="right">Telefono</th>
+            <th>Estado Civil</th>
+            <th></th>
+        </thead>
+        <ng-container *ngFor="let cliente of clientes">
+            <tr>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.dni}}</td>
+                <td class="right">{{cliente.telefono}}</td>
+                <td>{{cliente.estadoCivilDesc }}</td>
+                <td>
+                    <i class="fa fa-trash in-red" title="Eliminar Cliente" (click)="borrarClick(cliente.id)"></i>     
+                    <i class="far fa-edit" title="Editar Cliente" (click)="editarClick(cliente.id)"></i>                     
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+</div>
+
