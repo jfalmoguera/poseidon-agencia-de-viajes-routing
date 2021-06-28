@@ -1,7 +1,11 @@
 <header>
     <span [routerLink]="['']">Mi Agencia de viajes</span>
-    <span [routerLink]="['/viajes']" >Viajes</span>
+    <span [routerLink]="['/viajes']">Viajes</span>
     <span [routerLink]="['/viajes/editar']">Crear Viaje</span>
     <span [routerLink]="['/clientes']">Clientes</span>
     <span [routerLink]="['/clientes/editar']">Crear Cliente</span>
+
+    <span class="close-session">
+        <i (click)="cerrarSesionClick()" title="Cerrar sesión" class="fas fa-sign-out-alt"></i>
+    </span>
 </header>

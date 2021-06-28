@@ -16,5 +16,10 @@ header {
             cursor: pointer;
             text-decoration: underline;
         }
+
+        &.close-session {
+            position: fixed;
+            right: 0px;
+        }
     }
 }
