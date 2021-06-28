@@ -1,0 +1,48 @@
+<form [formGroup]="clientesForm" (ngSubmit)="guardarClick(clientesForm)" [ngClass]="{submited: submitted}">
+    <fieldset>
+        <legend>
+            <h1> Edicion de Clientes</h1>
+        </legend>
+        <div class="flex-row">
+            <div class="field-element">
+                <label for="">Nombre: </label>
+                <input id="" type="text" formControlName="nombre">
+            </div>
+            <div class="field-element">
+                <label for="">Apellidos: </label>
+                <input id="" type="text" formControlName="apellidos">
+            </div>
+            <div class="field-element">
+                <label for="">DNI: </label>
+                <input id="" type="text" formControlName="dni">               
+            </div>
+            <div class="field-element">
+                <label for="">Direccion: </label>
+                <input id="" type="text" formControlName="direccion">
+            </div>
+            <div class="field-element">
+                <label for="">Email: </label>
+                <input id="" type="email" formControlName="email">
+            </div>
+            <div class="field-element">
+                <label for="">Telefono: </label>
+                <input id="" type="number" formControlName="telefono">
+            </div>
+            <div class="field-element">
+                <label for="">Fecha de Nacimiento: </label>
+                <input id="" type="date" formControlName="fechaDeNacimiento">
+            </div>>
+            <div class="field-element">
+                <label for="">Esatdo Civil: </label>
+                <select id="" formControlName="estadoCivilId">
+                    <option value=""></option>
+                    <option [ngValue]="opt.id" *ngFor="let opt of estadosCivilList">{{opt.valor}}</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <div class="row-buttons">
+        <button class="btn primary" type="submit">Guardar</button>
+        <button class="btn " type="button" (click)="resetForm()">Nuevo Cliente</button>
+    </div>
+</form>

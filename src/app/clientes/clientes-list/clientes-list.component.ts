@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClienteListItem } from '../models/cliente-list-item';
 import { ClientesModelService } from '../services/clientes-model.service';
 
@@ -11,7 +12,7 @@ export class ClientesListComponent implements OnInit {
 
   clientes: ClienteListItem[] = [];
 
-  constructor(private clientesModel: ClientesModelService) { }
+  constructor(private clientesModel: ClientesModelService, private router: Router) { }
 
   ngOnInit(): void {
     this.clientesModel.getAll().subscribe(clientes => {
@@ -25,7 +26,9 @@ export class ClientesListComponent implements OnInit {
   }
 
   editarClick(id: string): void {
-
+    if (id) {
+      this.router.navigate(['clientes/editar', id])
+    }
   }
 
 }

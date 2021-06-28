@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse, HttpResponseBase, HttpStatusCode } from '@ang
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IdValor } from 'src/app/viajes/services/id-valor';
 import { Cliente } from '../models/cliente';
 import { ClienteListItem } from '../models/cliente-list-item';
 
@@ -49,5 +50,16 @@ export class ClientesModelService {
         map(res => res.status === HttpStatusCode.NoContent)
       )
       : of(false)
+  }
+
+  getEstadosCiviles(): Observable<IdValor[]> {
+    //return this.http.get<IdValor[]>(`${this.url}/estadosCiviles`);
+
+    return of([
+      { id: 1, valor: 'Soltero' },
+      { id: 2, valor: 'Casado' },
+      { id: 3, valor: 'Viudo' },
+      { id: 4, valor: 'Divorciado' },
+    ])
   }
 }
