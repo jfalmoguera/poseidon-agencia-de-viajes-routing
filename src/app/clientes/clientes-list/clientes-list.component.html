@@ -6,7 +6,7 @@
         <thead>
             <th>Nombre</th>
             <th>DNI</th>
-            <th class="right">Telefono</th>
+            <th>Telefono</th>
             <th>Estado Civil</th>
             <th></th>
         </thead>
@@ -14,14 +14,13 @@
             <tr>
                 <td>{{cliente.nombre}}</td>
                 <td>{{cliente.dni}}</td>
-                <td class="right">{{cliente.telefono}}</td>
+                <td>{{cliente.telefono}}</td>
                 <td>{{cliente.estadoCivilDesc }}</td>
                 <td>
-                    <i class="fa fa-trash in-red" title="Eliminar Cliente" (click)="borrarClick(cliente.id)"></i>     
-                    <i class="far fa-edit" title="Editar Cliente" (click)="editarClick(cliente.id)"></i>                     
+                    <i class="fa fa-trash in-red" title="Eliminar Cliente" (click)="borrarClick(cliente.id)"></i>
+                    <i class="far fa-edit" title="Editar Cliente" (click)="editarClick(cliente.id)"></i>
                 </td>
             </tr>
         </ng-container>
     </table>
 </div>
-
