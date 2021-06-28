@@ -4,6 +4,10 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Usuario } from '../models/usuario';
 
+/**
+ * Este servicio sabe como gestionar con la API 
+ * si el usuario tiene acceso a la aplicacion
+ */
 @Injectable({
   providedIn: 'root'
 })

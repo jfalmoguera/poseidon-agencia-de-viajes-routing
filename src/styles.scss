@@ -23,7 +23,11 @@
         }
 
         &:disabled {
-            background-color: gray !important;
+            color: gray !important;
+            &:hover {
+                background-color: white;
+            }
+    
         }
     }
 }

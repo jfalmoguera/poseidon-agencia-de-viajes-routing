@@ -93,7 +93,7 @@ export class ViajesEditComponent implements OnInit {
       }
 
       this.viajesModel.guardar(viaje).subscribe(x => {
-        this.router.navigate(['']);
+        this.router.navigate(['viajes']);
       })
 
     }
