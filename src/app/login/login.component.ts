@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  error = false;
+  email = '';
+
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
+  }
+
+  login(values: { email: string, password: string }): void {
+    if (values?.email && values?.password)
+      this.loginService.login(values).subscribe(x => {
+        if (x) {
+          console.log(x);
+        } else {
+          this.error = true;
+        }
+      })
+    else {
+      this.error = true;
+    }
   }
 
 }

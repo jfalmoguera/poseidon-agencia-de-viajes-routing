@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div>
+    <h1>login</h1>
+    <div>
+        <form #f=ngForm (ngSubmit)="login(f.value)">
+            <div class="field-element">
+                <label for="email">Email: </label>
+                <input id="email" type="email" required name="email" [(ngModel)]="email">
+            </div>
+            <div class="field-element">
+                <label for="password">Password: </label>
+                <input id="password" type="password" required name="password" ngModel>
+            </div>
+            <p *ngIf="error">
+                Usuario / contraseña incorrecta
+            </p>
+            <button class="btn primary" [disabled]="f.invalid">Login</button>
+        </form>
+    </div>
+</div>
