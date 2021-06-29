@@ -1,4 +1,4 @@
-<app-header (cerrarSesion)="cerrarSesion()" ></app-header>
+<app-header *ngIf="isUserLogged()" (cerrarSesion)="cerrarSesion()" ></app-header>
 <div class="main">
     <router-outlet></router-outlet>
 </div>

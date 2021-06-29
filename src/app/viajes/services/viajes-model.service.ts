@@ -1,10 +1,11 @@
-import { HttpClient, HttpParams, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Viaje } from '../models/viaje';
 import { IdValor } from './id-valor';
 import { map } from 'rxjs/operators';
 import { ViajesFilter } from '../models/viajes-filter';
+import { AuthService } from 'src/app/services/auth.service';
 
 export interface ViajeDelete {
   destroyedRow: number
@@ -30,12 +31,18 @@ export class ViajesModelService {
 
   private url = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   getViajes(): Observable<Viaje[]> {
 
-    return this.http.get<Viaje[]>(`${this.url}/viajes`).pipe(
+    const headers = new HttpHeaders({
+      Pepito: `Mi nombre es pepito`
+    })
+
+    return this.http.get<Viaje[]>(`${this.url}/viajes`, {
+      headers
+    }).pipe(
       map(x => x.map(v => new Viaje(v)))
     );
 

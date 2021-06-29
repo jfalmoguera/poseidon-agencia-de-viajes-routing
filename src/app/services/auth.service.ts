@@ -14,6 +14,18 @@ export class AuthService {
     return localStorage.getItem(this.APP_USER) !== null;
   }
 
+  get bearer(): string {
+
+    const b = localStorage.getItem(this.APP_USER);
+
+    if (b) {
+      const user: Usuario = JSON.parse(b);
+      return user.bearer;
+    }
+
+    return '';
+  }
+
   storeUser(usuario: Usuario): void {
     localStorage.setItem(this.APP_USER, JSON.stringify(usuario))
   }
@@ -21,4 +33,6 @@ export class AuthService {
   logOutUser(): void {
     localStorage.removeItem(this.APP_USER);
   }
+
+
 }
